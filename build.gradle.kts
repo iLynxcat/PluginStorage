@@ -1,5 +1,6 @@
 plugins {
     `java-library`
+    `maven-publish`  // jitpack needs this
     alias(libs.plugins.shadow)
 }
 
@@ -7,7 +8,6 @@ val gitVersionProvider = providers.exec {
     commandLine("git", "describe", "--tags", "--always", "--dirty=-dev")
 }.standardOutput.asText.map { it.trim() }.orElse("unknown")
 
-group = "me.ilynxcat"
 version = gitVersionProvider.get()
 
 dependencies {
