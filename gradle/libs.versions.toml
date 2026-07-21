@@ -1,0 +1,15 @@
+[versions]
+java = "21"  # should be set to the version used by the paper mc version
+paper = "1.21.4-R0.1-SNAPSHOT"
+lombok = "1.18.46"
+sqlitejdbc = "3.53.2.0"
+hikaricp = "7.1.0"
+
+[libraries]
+paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paper" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+sqlitejdbc = { module = "org.xerial:sqlite-jdbc", version.ref = "sqlitejdbc" }
+hikaricp = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version = "9.4.1" }
