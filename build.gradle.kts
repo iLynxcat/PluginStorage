@@ -49,3 +49,8 @@ publishing {
         }
     }
 }
+
+// idk something broke in gitpack's build or whatever, this should fix it
+tasks.withType<GenerateModuleMetadata>().configureEach {
+    dependsOn(tasks.named("jar"))
+}
