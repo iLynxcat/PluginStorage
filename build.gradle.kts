@@ -36,3 +36,16 @@ tasks.withType<JavaCompile>().configureEach {
 tasks.build {
     dependsOn(tasks.named("shadowJar"))
 }
+
+tasks.shadowJar {
+    archiveClassifier.set("")
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("shadow") {
+            from(components["shadow"])
+            artifactId = "PluginStorage"
+        }
+    }
+}
