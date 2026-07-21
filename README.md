@@ -40,3 +40,17 @@ public class MyPlugin extends org.bukkit.plugin.java.JavaPlugin {
     }
 }
 ```
+
+## Installation
+
+Please use jitpack because I don't feel like publishing to anywhere else.
+
+```kotlin
+repositories {
+    maven("https://jitpack.io")
+}
+
+dependencies {
+    implementation("com.github.ilynxcat:PluginStorage:v0.1.0")
+}
+```
