@@ -51,6 +51,6 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.ilynxcat:PluginStorage:0.1.0")
+    implementation("com.github.ilynxcat:PluginStorage:0.1.2")
 }
 ```
