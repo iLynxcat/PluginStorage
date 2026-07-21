@@ -1,4 +1,4 @@
-rootProject.name = "jpstorage"
+rootProject.name = "plugin-storage"
 
 pluginManagement {
 	repositories {

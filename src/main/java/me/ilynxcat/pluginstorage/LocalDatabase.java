@@ -1,4 +1,4 @@
-package me.ilynxcat.jpstorage;
+package me.ilynxcat.pluginstorage;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -11,7 +11,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class JPStorage {
+public class LocalDatabase {
 
     private static final int THREAD_POOL_COUNT = 3;
     private static final int MAX_POOL_CONNECTIONS = 5;
@@ -24,14 +24,14 @@ public class JPStorage {
             """;
 
     private final HikariDataSource dataSource;
-    final ExecutorService executor = Executors.newFixedThreadPool(THREAD_POOL_COUNT);
+    public final ExecutorService executor = Executors.newFixedThreadPool(THREAD_POOL_COUNT);
 
-    public JPStorage(JavaPlugin plugin) {
+    private LocalDatabase(JavaPlugin plugin, String filename) {
         final File dbFile;
         var dataFolder = plugin.getDataFolder();
         if (!dataFolder.isDirectory() && !dataFolder.mkdirs())
             throw new IllegalStateException("Plugin data folder is not a directory");
-        dbFile = new File(dataFolder, "storage.db");
+        dbFile = new File(dataFolder, filename);
 
         final HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:sqlite:" + dbFile.getAbsolutePath());
@@ -56,6 +56,14 @@ public class JPStorage {
         }
 
         dataSource.close();
+    }
+
+    public static LocalDatabase init(JavaPlugin plugin) {
+        return init(plugin, "storage.db");
+    }
+
+    public static LocalDatabase init(JavaPlugin plugin, String filename) {
+        return new LocalDatabase(plugin, filename);
     }
 
 }
